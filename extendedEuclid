@@ -1,0 +1,21 @@
+struct triplet
+{
+    ll x, y, gcd;
+};
+triplet extendedEuclid(ll x, ll y)
+{
+    if (y == 0)
+    {
+        triplet ans;
+        ans.x = 1;
+        ans.gcd = x;
+        ans.y = 0;
+        return ans;
+    }
+    triplet smalAns = extendedEuclid(y, x % y);
+    triplet ans;
+    ans.gcd = smalAns.gcd;
+    ans.x = smalAns.y;
+    ans.y = smalAns.x - ((x / y) * smalAns.y);
+    return ans;
+}
